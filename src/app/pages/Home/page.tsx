@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { IoBan, IoBookOutline, IoTrendingUp, IoTrophy } from "react-icons/io5";
 import Navbar from "../../components/home/NavBar";
 import HeroContent from "../../components/home/HeroContent";
-import LearningCard from "../../components/home/LearningCard";
+import { LearningCard } from "../../components/home/LearningCard";
 import FeatureCard from "../../components/home/FeatureCard";
 import FloatingElement from "../../components/home/FloatingElement";
 

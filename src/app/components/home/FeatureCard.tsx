@@ -7,7 +7,7 @@ interface FeatureCardProps {
   delay?: number;
 }
 
-const FeatureCard: React.FC<FeatureCardProps> = ({
+export const FeatureCard: React.FC<FeatureCardProps> = ({
   icon: Icon,
   title,
   description,
@@ -22,12 +22,11 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
 
   return (
     <div
-      className={`bg-[#0d0d0d] border border-emerald-500/30 rounded-lg p-6 shadow-lg shadow-emerald-500/10 hover:shadow-2xl hover:shadow-emerald-500/20 hover:border-emerald-500/50 transition-all duration-500 transform hover:-translate-y-2 ${
+      className={`bg-[#0d0d0d] border border-emerald-500/30 rounded-lg p-6 shadow-lg hover:shadow-xl hover:border-emerald-500/50 transition-all duration-300 transform hover:-translate-y-1 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       }`}
     >
-      {/* Terminal-style icon container */}
-      <div className="w-14 h-14 bg-linear-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 rounded-lg flex items-center justify-center mb-4">
+      <div className="w-14 h-14 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 border border-emerald-500/30 rounded-lg flex items-center justify-center mb-4">
         <Icon className="text-emerald-400" size={28} />
       </div>
 
@@ -43,5 +42,4 @@ const FeatureCard: React.FC<FeatureCardProps> = ({
     </div>
   );
 };
-
 export default FeatureCard;
