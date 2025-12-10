@@ -1,89 +1,64 @@
 import React from "react";
-import { IoTerminal, IoTrophy, IoPeople } from "react-icons/io5";
-import { ProgressBar } from "./ProgressBar";
-import InfoCard from "./InfoCard";
+import { IoBookOutline, IoTrophy, IoPeople, IoCode } from "react-icons/io5";
+import ProgressCard from "./ProgressCard";
+import TypingTerminal from "./TypingTerminal";
 
 interface CourseProgress {
   name: string;
   progress: number;
 }
 
-interface FloatingElementProps {
-  children: React.ReactNode;
-  delay?: number;
-  duration?: number;
-}
-
-const FloatingElement: React.FC<FloatingElementProps> = ({
-  children,
-  delay = 0,
-  duration = 3,
-}) => {
-  return (
-    <div
-      className="animate-float"
-      style={{
-        animationDelay: `${delay}s`,
-        animationDuration: `${duration}s`,
-      }}
-    >
-      {children}
-    </div>
-  );
-};
-
 interface LearningCardProps {
   courses: CourseProgress[];
 }
 
 export const LearningCard: React.FC<LearningCardProps> = ({ courses }) => {
+  const icons = [IoCode, IoBookOutline, IoBookOutline];
+
   return (
-    <div className="relative">
-      <div className="bg-gradient-to-br from-emerald-600 to-cyan-700 border border-emerald-400/30 rounded-2xl p-6 sm:p-8 shadow-xl transform hover:scale-105 transition-all duration-500">
-        <div className="flex items-center gap-3 mb-4 sm:mb-6 flex-wrap">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-black/30 border border-white/20 rounded-lg flex items-center justify-center">
-            <IoTerminal className="text-white" size={24} />
+    <div className="space-y-6">
+      {/* Typing Terminal */}
+      <TypingTerminal />
+
+      {/* Progress Section (bluish bg added here only) */}
+      <div className="bg-gradient-to-br from-blue-700/30 via-blue-600/20 to-cyan-600/30 border border-blue-500/30 rounded-xl p-6 shadow-xl">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+            <IoBookOutline className="text-cyan-300" size={20} />
           </div>
-          <div className="text-white font-mono">
-            <div className="text-xs sm:text-sm opacity-90">
-              <span className="text-yellow-300">$</span> ai_assistant
-            </div>
-            <div className="font-bold text-sm sm:text-base">
-              learning_progress.py
-            </div>
+          <div>
+            <h3 className="font-semibold text-white">Your Progress</h3>
+            <p className="text-sm text-gray-400">Keep learning!</p>
           </div>
         </div>
 
-        <div className="space-y-3 sm:space-y-4">
+        <div className="space-y-4">
           {courses.map((course, index) => (
-            <ProgressBar
+            <ProgressCard
               key={index}
-              name={course.name}
+              title={course.name}
               progress={course.progress}
+              icon={icons[index]}
             />
           ))}
         </div>
       </div>
 
-      <FloatingElement delay={0.5} duration={3}>
-        <div className="absolute top-8 -right-2 sm:top-6 sm:-right-4 md:top-4 md:-right-6 scale-75 sm:scale-90 md:scale-100">
-          <InfoCard
-            icon={IoTrophy}
-            title="Code Master!"
-            subtitle="Achievement"
-          />
+      {/* Stats Cards (UNCHANGED) */}
+      <div className="grid grid-cols-2 gap-4">
+        <div className="bg-gray-900 border border-gray-800 rounded-lg p-4 text-center hover:border-emerald-500/50 transition-colors">
+          <IoTrophy className="text-yellow-400 mx-auto mb-2" size={24} />
+          <div className="text-sm font-semibold text-white">Code Master</div>
+          <div className="text-xs text-gray-400">Achievement</div>
         </div>
-      </FloatingElement>
-
-      <FloatingElement delay={1} duration={4}>
-        <div className="absolute -bottom-8 -left-2 sm:-bottom-10 sm:-left-4 md:-bottom-12 md:-left-6 scale-75 sm:scale-90 md:scale-100">
-          <InfoCard
-            icon={IoPeople}
-            title="2,847 Students"
-            subtitle="Active Now"
-          />
+        <div className="bg-gray-900 border border-gray-800 rounded-lg p-4 text-center hover:border-emerald-500/50 transition-colors">
+          <IoPeople className="text-cyan-400 mx-auto mb-2" size={24} />
+          <div className="text-sm font-semibold text-white">2,847 Active</div>
+          <div className="text-xs text-gray-400">Students Online</div>
         </div>
-      </FloatingElement>
+      </div>
     </div>
   );
 };
+
+export default LearningCard;
