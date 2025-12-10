@@ -126,7 +126,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="relative z-10 border-t border-gray-800 py-8">
         <div className="container mx-auto px-6 text-center text-gray-400">
-          <p>© 2025 PyLearn AI. Made with ❤️ for Python learners.</p>
+          <p>© 2025 PyForAI. Made with ❤️ for Python learners.</p>
         </div>
       </footer>
 
