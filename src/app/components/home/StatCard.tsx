@@ -13,7 +13,7 @@ const StatCard: React.FC<StatCardProps> = ({ value, label, delay = 0 }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       let current = 0;
-      const increment = target / 50;
+      const increment = target / 30; // Reduced from 50 to 30 iterations
       const counter = setInterval(() => {
         current += increment;
         if (current >= target) {
@@ -22,7 +22,8 @@ const StatCard: React.FC<StatCardProps> = ({ value, label, delay = 0 }) => {
         } else {
           setCount(Math.floor(current));
         }
-      }, 30);
+      }, 50); // Increased from 30ms to 50ms
+
       return () => clearInterval(counter);
     }, delay);
 
@@ -30,11 +31,11 @@ const StatCard: React.FC<StatCardProps> = ({ value, label, delay = 0 }) => {
   }, [target, delay]);
 
   return (
-    <div className="text-center transform hover:scale-110 transition-all duration-300">
-      <div className="text-4xl font-bold font-mono text-emerald-400 mb-2">
+    <div className="text-center transform hover:scale-105 transition-transform duration-300">
+      <div className="text-3xl sm:text-4xl font-bold font-mono text-emerald-400 mb-2">
         {label === "success_rate" ? `${count}%` : `${count.toLocaleString()}+`}
       </div>
-      <div className="text-gray-500 font-mono text-sm uppercase tracking-wider">
+      <div className="text-gray-500 font-mono text-xs sm:text-sm uppercase tracking-wider">
         <span className="text-gray-600">//</span> {label}
       </div>
     </div>
